@@ -8,5 +8,5 @@ def add_routes(app: Sanic) -> Sanic:
     return app
 
 
-async def ping(req: Request) -> HTTPResponse:
+async def ping(req: Request) -> HTTPResponse:  # noqa
     return json({"msg": "Pong!"})
