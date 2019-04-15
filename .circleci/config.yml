@@ -10,35 +10,31 @@ jobs:
 
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "requirements/dev-requirements.txt" }}
-            - v1-dependencies-
+            - dependencies-{{ checksum "poetry.lock" }}
+            - dependencies-
 
       - run:
           name: Build
           command: |
-            python3 -m venv .venv
-            . .venv/bin/activate
-            pip install -r requirements/dev-requirements.txt
+            poetry install
 
       - save_cache:
           paths:
-            - ./.venv
-          key: v1-dependencies-{{ checksum "requirements/dev-requirements.txt" }}
+            - /home/circleci/.cache/pypoetry/virtualenvs
+          key: dependencies-{{ checksum "poetry.lock" }}
 
       - run:
           name: Static tests
           command:  |
-            . .venv/bin/activate
-            black src/ tests/
-            mypy src/ tests/
-            pylint src/ tests/
-            flake8 src/ tests/
+            poetry run black src/ tests/
+            poetry run mypy src/ tests/
+            poetry run pylint src/ tests/
+            poetry run flake8 src/ tests/
 
       - run:
           name: Unit tests
           command: |
-            . .venv/bin/activate
-            pytest --cov
+            poetry run pytest --cov
 
       - store_artifacts:
           path: .converage
