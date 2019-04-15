@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "machine-learning"
+version = "0.1.0"
+description = ""
+authors = ["Antoine Lefebvre-Brossard <antoinelb@protonmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.6"
+
+[tool.poetry.dev-dependencies]
+bandit = "*"
+black = {version = "*",allows-prereleases = true}
+flake8 = "*"
+flake8-bugbear = "*"
+isort = "*"
+mypy = "*"
+pylint = "*"
+pytest = "*"
+pre-commit = "^1.15"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
