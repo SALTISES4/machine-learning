@@ -2,3 +2,4 @@ __pycache__/
 .mypy_cache/
 tags
 .venv
+config/prod-config.yml

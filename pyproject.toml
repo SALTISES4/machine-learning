@@ -6,6 +6,7 @@ authors = ["Antoine Lefebvre-Brossard <antoinelb@protonmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.6"
+sanic = "*"
 
 [tool.poetry.dev-dependencies]
 black = {version = "*",allows-prereleases = true}
@@ -15,9 +16,12 @@ isort = "*"
 mypy = "*"
 pylint = "*"
 pytest = "*"
-pytest-cov = "^2.6"
+pytest-cov = "*"
 pre-commit = "*"
 safety = "*"
+
+[tool.black]
+line_length = 79
 
 [build-system]
 requires = ["poetry>=0.12"]

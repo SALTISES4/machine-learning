@@ -1,0 +1,62 @@
+server:
+  host: 127.0.0.1
+  port: 8000
+  reload: true
+logging:
+  disable_existing_loggers: false
+  formatters:
+    server:
+      datefmt: '%Y-%m-%d %H:%M:%S'
+      format: '%(asctime)s - sanic - %(levelname)s - %(message)s'
+    complete:
+      datefmt: "%Y-%m-%d %H:%M:%S"
+      format: "%(asctime)s - %(name)s - %(levelname)s - %(filename)s: %(lineno)d - %(message)s"
+  handlers:
+    file:
+      level: DEBUG
+      class: logging.handlers.TimedRotatingFileHandler
+      formatter: complete
+      when: midnight
+      filename: "logs/log"
+    console:
+      level: DEBUG
+      class: logging.StreamHandler
+      formatter: complete
+      stream: ext://sys.stdout
+    server_file:
+      level: DEBUG
+      class: logging.handlers.TimedRotatingFileHandler
+      formatter: server
+      when: midnight
+      filename: "logs/log"
+    server_console:
+      level: DEBUG
+      class: logging.StreamHandler
+      formatter: server
+      stream: ext://sys.stdout
+  loggers:
+    machine-learning:
+      handlers:
+      - file
+      - console
+      level: DEBUG
+      propagate: true
+    sanic.root:
+      handlers:
+      - server_file
+      - server_console
+      level: INFO
+      propagate: true
+    sanic.access:
+      handlers:
+      - server_file
+      - server_console
+      level: INFO
+      propagate: true
+    sanic.error:
+      handlers:
+      - server_file
+      - server_console
+      level: INFO
+      propagate: true
+  version: 1
