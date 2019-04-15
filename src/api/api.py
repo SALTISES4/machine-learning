@@ -8,5 +8,7 @@ def add_routes(app: Sanic) -> Sanic:
     return app
 
 
-async def ping(req: Request) -> HTTPResponse:  # noqa
+async def ping(
+    req: Request  # pylint: disable=unused-argument
+) -> HTTPResponse:
     return json({"msg": "Pong!"})
