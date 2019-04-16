@@ -5,7 +5,7 @@ from src import run_server
 
 
 def read_args() -> argparse.Namespace:
-    command_choices = ("run-server",)
+    command_choices = ("run",)
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "command",
@@ -24,7 +24,7 @@ def read_args() -> argparse.Namespace:
 if __name__ == "__main__":
     args = read_args()
 
-    if args.command == "run-server":
+    if args.command == "run":
         if args.config is None:
             raise ValueError(
                 "A configuration file is needed for the command "
