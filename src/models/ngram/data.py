@@ -3,14 +3,14 @@ import os
 import pickle
 import zipfile
 from itertools import product
-from typing import Dict, List
+from typing import Dict
 
 import requests
 
 from src.utils import done_print, load_print
 
 
-def read_data(language: str) -> Dict[int, List[Dict[str, float]]]:
+def read_data(language: str) -> Dict[int, Dict[str, float]]:
     path = os.path.join(
         os.path.dirname(__file__), *[os.pardir] * 3, "data", "ngrams", language
     )
@@ -42,9 +42,7 @@ def read_data(language: str) -> Dict[int, List[Dict[str, float]]]:
     return data
 
 
-def read_gram_file(
-    language: str, gram: int, path: str
-) -> List[Dict[str, float]]:
+def read_gram_file(language: str, gram: int, path: str) -> Dict[str, float]:
     path = os.path.join(path, f"{gram}-grams.txt")
     if os.path.exists(path):
         load_print(f"Reading {gram}-gram file for {language}...")
@@ -61,7 +59,7 @@ def read_gram_file(
 
 def download_gram_file(
     language: str, gram: int, path: str
-) -> List[Dict[str, float]]:
+) -> Dict[str, float]:
     load_print(f"Downloading {gram}-gram file for {language}...")
     base_url = "http://practicalcryptography.com/media/cryptanalysis/files"
     if language == "english":
