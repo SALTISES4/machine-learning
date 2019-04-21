@@ -8,6 +8,7 @@ authors = ["Antoine Lefebvre-Brossard <antoinelb@protonmail.com>"]
 python = "^3.6"
 sanic = "*"
 pyyaml = "^5.1"
+requests = "^2.21"
 
 [tool.poetry.dev-dependencies]
 black = {version = "*",allows-prereleases = true}
@@ -20,6 +21,7 @@ pytest = "*"
 pytest-cov = "*"
 pre-commit = "*"
 safety = "*"
+attr = "^0.3.1"
 
 [tool.black]
 line_length = 79
